@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColorfulTodo</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="app-header" role="banner">
+    <h1>ColorfulTodo</h1>
+  </header>
+
+  <form id="todo-form" class="todo-form">
+    <input id="new-todo" type="text" placeholder="What needs to be done?" aria-label="New todo" autocomplete="off" />
+    <button type="submit" id="add-todo-btn" aria-label="Add todo">Add</button>
+  </form>
+
+  <ul id="todo-list" class="todo-list" role="list" aria-live="polite"></ul>
+
+  <div class="filters">
+    <button id="filter-all" data-filter="all">All</button>
+    <button id="filter-active" data-filter="active">Active</button>
+    <button id="filter-completed" data-filter="completed">Completed</button>
+  </div>
+
+  <footer class="app-footer" role="contentinfo">
+    <small>Made with ❤️ by the ColorfulTodo team.</small>
+  </footer>
+</body>
+</html>

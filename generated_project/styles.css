@@ -1,0 +1,329 @@
+/* VibrantTodo – Stylesheet */
+/* ------------------------------------------------------------ */
+/* Theme variables – light (default) and dark (data-theme="dark") */
+:root {
+  /* Primary palette */
+  --color-primary: #6200ee;
+  --color-primary-light: #7c00ff;
+  --color-primary-dark: #4a00c1;
+  /* Accent */
+  --color-accent: #03dac6;
+  /* Background & surface */
+  --color-bg: #f5f5f5;
+  --color-surface: #ffffff;
+  /* Text */
+  --color-text: #212121;
+  --color-text-light: #ffffff;
+  /* Transitions */
+  --transition: 0.3s ease;
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --color-primary: #bb86fc;
+  --color-primary-light: #e0b3ff;
+  --color-primary-dark: #8855d7;
+  --color-bg: #121212;
+  --color-surface: #1e1e1e;
+  --color-text: #e0e0e0;
+}
+
+/* Global reset & basic styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ------------------------------------------------------------ */
+/* Layout – header, main, footer */
+header.app-header {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+header.app-header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+#theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--color-text-light);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+
+#theme-toggle:hover {
+  transform: rotate(20deg);
+}
+
+main.app-main {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+footer.app-footer {
+  padding: 0.5rem 1.5rem;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-primary-light);
+}
+
+/* ------------------------------------------------------------ */
+/* Input section */
+section.input-section {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+section.input-section input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-primary-light);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+section.input-section input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.2);
+}
+
+section.input-section button {
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+section.input-section button:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+section.input-section button:active {
+  transform: translateY(1px);
+}
+
+/* ------------------------------------------------------------ */
+/* Todo list */
+ul.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.todo-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-primary-light);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), opacity var(--transition);
+  cursor: grab;
+}
+
+.todo-item:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.todo-item .todo-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--color-primary-light);
+  border-radius: 0.25rem;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.todo-item .todo-checkbox:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.todo-item .todo-checkbox:checked::after {
+  content: "\2713"; /* check mark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.todo-item .todo-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item .todo-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.todo-item .todo-desc {
+  font-size: 0.875rem;
+  color: #777;
+}
+
+.todo-item .action-btn {
+  background: none;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: background var(--transition), color var(--transition);
+}
+
+.todo-item .action-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-text-light);
+}
+
+/* Completed state */
+.todo-item.completed {
+  opacity: 0.6;
+}
+
+.todo-item.completed .todo-title,
+.todo-item.completed .todo-desc {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* Drag‑and‑drop visual cues */
+.todo-item.dragging {
+  opacity: 0.5;
+  transform: scale(0.97);
+}
+
+.todo-item.drag-over {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent);
+}
+
+/* ------------------------------------------------------------ */
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.filter-bar .filter-btn {
+  background: none;
+  border: 2px solid var(--color-primary-light);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.filter-bar .filter-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-text-light);
+}
+
+.filter-bar .filter-btn.active,
+.filter-bar .filter-btn[aria-pressed="true"] {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  border-color: var(--color-primary);
+}
+
+/* ------------------------------------------------------------ */
+/* Empty state */
+#empty-state {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
+
+/* ------------------------------------------------------------ */
+/* Animations – fade in for new items */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.todo-item {
+  animation: fadeIn var(--transition) ease-out;
+}
+
+/* ------------------------------------------------------------ */
+/* Responsive design */
+@media (max-width: 600px) {
+  header.app-header {
+    flex-direction: column;
+    align-items flex-start;
+    gap: 0.5rem;
+  }
+
+  section.input-section {
+    flex-direction: column;
+  }
+
+  section.input-section button {
+    width: 100%;
+  }
+
+  .filter-bar {
+    flex-wrap: wrap;
+  }
+}
